@@ -14,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1> Movie Tracker</h1>
         <NavBar movies={this.props.movies}/>
       </div>
     );

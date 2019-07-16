@@ -7,7 +7,6 @@ const NavBar = ({movies}) => {
   console.log(movies)
   return (
     <div className = 'header'>
-      <h1> Movie Tracker</h1>
       <NavLink to='/' className='nav'>Movies</NavLink>
       <NavLink to='/favorites' className='nav'>Favorites</NavLink>
       <Route exact path='/' render={() => <MovieContainter movies={movies}/>} />

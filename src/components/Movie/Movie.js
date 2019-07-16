@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Movie = ({ poster, id, backDrop }) => {
   const imgSrc = `http://image.tmdb.org/t/p/w185//${poster}`
   return (
-    <Link to={`/${id}`} key={id}>
+    <Link to={`/${id}`} key={id} className='movie'>
         <img src={imgSrc} alt="movie poster"/>
     </Link>
   )
