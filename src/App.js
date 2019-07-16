@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import NavBar from '../NavBar/NavBar';
-import { fetchMovies } from '../../api/apiCalls';
+import NavBar from './components/NavBar/NavBar';
+import MovieContainer from './components/MovieContainer/MovieContainer';
+import { fetchMovies } from './api/apiCalls';
 
 class App extends Component {
   constructor() {
@@ -19,7 +20,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
+        {/* <NavBar /> */}
+        <MovieContainer recentMovies={this.state.recentMovies}/>
       </div>
     );
   }
