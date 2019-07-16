@@ -14,6 +14,7 @@ const MovieContainer = ({ movies }) => {
       />
     )
   })
+
   return (
     <section className='movie-container'>
       {displayMovies}
