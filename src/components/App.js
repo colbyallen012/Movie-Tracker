@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { fetchMovies } from './apiCalls';
 
 class App extends Component {
   constructor() {
@@ -8,16 +9,12 @@ class App extends Component {
       recentMovies: []
     }
   }
-  async componentDidMount() {
-    // const url = 'http://localhost:3000'
-    try {
-      fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=044b86cc1259591cb5a872bda8d25edd&language=en-US&page=1`)
-      .then(res => res.json())
+  
+  async componentDidMount() { 
+    await fetchMovies()
       .then(recentMovies => this.setState({ recentMovies }))
-    } catch (error) {
-      console.log(error.message)
-    }
   }
+
   render() {
     return (
       <div className="App">
