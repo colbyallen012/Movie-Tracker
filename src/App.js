@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <NavBar /> */}
+        <NavBar />
         <MovieContainer movies={this.props.movies}/>
       </div>
     );
