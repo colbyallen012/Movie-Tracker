@@ -1,5 +1,6 @@
 import React from 'react';
 import Movie from '../Movie/Movie';
+import '../MovieContainer/MovieContainer.css'
 
 const MovieContainer = ({ movies }) => {
   const displayMovies = movies.map(movie => {
