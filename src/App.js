@@ -7,13 +7,6 @@ import MovieContainer from './components/MovieContainer/MovieContainer';
 import { fetchMovies } from './api/apiCalls';
 
 class App extends Component {
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     recentMovies: []
-  //   }
-  // }
-  
   async componentDidMount() { 
     await fetchMovies()
       .then(movies => this.props.showMovies(movies))
@@ -23,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         {/* <NavBar /> */}
-        {/* <MovieContainer /> */}
+        <MovieContainer movies={this.props.movies}/>
       </div>
     );
   }
