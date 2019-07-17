@@ -22,7 +22,8 @@ class App extends Component {
 }
 
   const mapStateToProps = (state) => ({
-    movies: state.movies
+    movies: state.movies,
+    login: state.login
   })
 
   const mapDispatchToProps = (dispatch) => ({
