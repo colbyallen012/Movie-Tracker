@@ -7,7 +7,7 @@ export const signUpReducer = (state = {}, action) => {
     }
 }
 
-export const loginUserReducer = (state={}, action) => {
+export const loginUserReducer = (state = {}, action) => {
   switch(action.type) {
     case 'LOGIN':
       return action.user;

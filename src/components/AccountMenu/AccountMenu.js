@@ -4,10 +4,11 @@ import { SignUp } from '../SignUp/SignUp'
 import { signUp } from '../../actions';
 import { login } from '../../actions';
 import { connect } from 'react-redux';
+// import { bindActionCreators } from 'redux';
 
-export class AccountMenu extends Component {
-  constructor(props) {
-    super(props);
+class AccountMenu extends Component {
+  constructor() {
+    super();
     this.state = {
       name: '',
       email: '',
@@ -38,7 +39,7 @@ export class AccountMenu extends Component {
       const response = await fetch('http://localhost:3000/api/users', options)
       const result = await response.json()
 
-      console.log(result)
+      return this.props.login(result.data)
     } catch (error) {
       throw Error(error.message)
     } 
@@ -68,8 +69,8 @@ export class AccountMenu extends Component {
 
 const mapStateToProps = (store) => ({
   signUp: store.signUp,
-  user: store.user
-  // showError: store.showError
+  login: store.login,
+  showError: store.showError
 });
 
 const mapDispatchToProps = (dispatch) => ({
