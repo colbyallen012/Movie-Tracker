@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Login } from '../Login/Login';
 import { SignUp } from '../SignUp/SignUp'
 import { signUp } from '../../actions';
+import { login } from '../../actions';
 import { connect } from 'react-redux';
 
 export class AccountMenu extends Component {
@@ -14,7 +15,6 @@ export class AccountMenu extends Component {
     };
   }
   
-
   handleChange = (e) => {
     const {name, value} = e.target
     this.setState({ [name]: value })
@@ -22,7 +22,26 @@ export class AccountMenu extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.addUser()
+    this.getUser(this.state)
+  }
+
+  getUser = async (user) => {
+    try {
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+     
+      const response = await fetch('http://localhost:3000/api/users', options)
+      const result = await response.json()
+
+      console.log(result)
+    } catch (error) {
+      throw Error(error.message)
+    } 
   }
 
   addUser = () => {
@@ -40,20 +59,22 @@ export class AccountMenu extends Component {
   render() {
     return (  
       <div>
-        {/* <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/> */}
-        <SignUp name={this.state.name} email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        {/* <SignUp name={this.state.name} email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/> */}
       </div>
     )
   }
 };
 
 const mapStateToProps = (store) => ({
-  signUp: store.signUp
+  signUp: store.signUp,
+  user: store.user
   // showError: store.showError
 });
 
 const mapDispatchToProps = (dispatch) => ({
   signUp: (user) => dispatch(signUp(user)),
+  login: (user) => dispatch(login(user))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountMenu)
