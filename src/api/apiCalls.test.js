@@ -1,11 +1,13 @@
 import { fetchMovies } from './apiCalls';
 import { apiKey} from '../apiKey'
+import { async } from 'q';
 
 describe('Fetch Movies', () => {
   let mockResponse;
 
   beforeEach(() => {
-    mockResponse = [{
+    mockResponse = {
+     results: [{
       adult:false, 
       backdrop_path:"/dihW2yTsvQlust7mSuAqJDtqW7k.jpg",
       genre_ids: Array[3],
@@ -20,7 +22,8 @@ describe('Fetch Movies', () => {
       video: false,
       vote_average: 7.8,
       vote_count: 1815
-    }];
+    }]
+  };
 
     window.fetch = jest.fn().mockImplementation(() => {
       return Promise.resolve({
@@ -38,7 +41,16 @@ describe('Fetch Movies', () => {
   }); 
 
   it('should return parsed response if ok', async () => {
-    console.log(fetchMovies())
-    await expect(fetchMovies()).resolves.toEqual(mockResponse)
+    await expect(fetchMovies()).resolves.toEqual(mockResponse.results)
+  });
+
+  it('should return an error if not promise does not resolve', async () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({
+        ok: false
+      })
+    });
+
+    expect(fetchMovies()).resolves.toEqual(Error(''))
   });
 });
