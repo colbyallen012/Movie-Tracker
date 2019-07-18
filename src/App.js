@@ -27,4 +27,13 @@ class App extends Component {
   }
 }
 
-export default App;
+  const mapStateToProps = (state) => ({
+    movies: state.movies,
+    login: state.login
+  })
+
+  const mapDispatchToProps = (dispatch) => ({
+    showMovies: (movies) => dispatch (showMovies(movies))
+  })
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
