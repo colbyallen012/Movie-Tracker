@@ -6,3 +6,12 @@ export const signUpReducer = (state = {}, action) => {
       return state;
     }
 }
+
+export const loginUserReducer = (state={}, action) => {
+  switch(action.type) {
+    case 'LOGIN':
+      return action.user;
+    default:
+      return state;
+  }
+}
