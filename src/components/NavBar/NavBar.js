@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, NavLink} from 'react-router-dom'
 import MovieContainter from '../MovieContainer/MovieContainer'
 import MovieSpecs from '../MovieSpecs/MovieSpecs'
-import { AccountMenu } from '../AccountMenu/AccountMenu'
+import AccountMenu from '../AccountMenu/AccountMenu'
 
 const NavBar = ({movies}) => {
   return (
