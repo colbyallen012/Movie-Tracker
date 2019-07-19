@@ -12,3 +12,8 @@ export const login = (user) => ({
   type: 'LOGIN',
   user
 });
+
+export const showError = (error) => ({
+  type: "SHOW_ERROR",
+  error
+});
