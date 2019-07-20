@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1> Movie Tracker</h1>
-        <NavBar movies={this.props.movies}/>
+        <NavBar movies={this.props.movies} user={this.props.login}/>
       </div>
     );
   }
