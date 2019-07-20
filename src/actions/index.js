@@ -16,3 +16,8 @@ export const login = (user) => ({
 export const logOut = () => ({
   type: 'LOGOUT'
 })
+
+export const showError = (error) => ({
+  type: "SHOW_ERROR",
+  error
+});
