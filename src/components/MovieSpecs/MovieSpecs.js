@@ -14,11 +14,7 @@ class MovieSpecs extends Component {
 
   handleClick = () => {
     const { title, poster_path, overview, vote_average, release_date, user, id } = this.props;
-    if (user === {}) {
-      
-    } else {
-      this.favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview });
-    }
+    this.favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview });
   }
   
   favoriteMovie = async (favoriteInfo) => {
@@ -42,17 +38,22 @@ class MovieSpecs extends Component {
   
   render() {
     const { title, backdrop_path, overview, vote_average, release_date, user} = this.props;
+    console.log(this.props)
     const imgSrc = `http://image.tmdb.org/t/p/w1280//${backdrop_path}`
     return (
       <div className='container'>
-        <h1 className='title'>{title} <span className='rating'> Rating : {vote_average} / 10 </span></h1>
+        <h1 className='title'>{title}
+          <span className='rating'> Rating : {vote_average} / 10 </span>
+          <button onClick={() => this.handleClick()} className='btn'>
+            Add to Favorites
+          </button>
+        </h1>
         <img src={imgSrc} alt="movie backdrop" className='back-drop'/>
         <p className='description'>{overview}</p>
         <p className='date'>Release Date: {release_date}</p>
         <h3>{this.state.error}</h3>
-        <button onClick={() => this.handleClick()} >Favorite</button>
-        <Link to={`/`} className='back-btn'>
-          <button className='btn'>
+        <Link to={`/`}>
+          <button className='back-btn'>
            ◀ back
           </button>
         </Link>
