@@ -27,3 +27,24 @@ export const getUser = async (user) => {
     // throw Error(error.message)
   } 
 }
+
+export const favoriteMovie = async (userId, movieInfo) => {
+  try {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(userId, ...movieInfo),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const response = await fetch(`http://localhost:3000/api/users/favorites/new`, options)
+    const result = await response.json()
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const viewFavorites = () => {
+
+}

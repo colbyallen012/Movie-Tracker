@@ -28,7 +28,6 @@ export const SignUp = ({name, email, password, handleAddChange, handleAdd}) => {
           onChange={handleAddChange}
         />
       <button>Sign Up</button>
-      {(error !== '') && <h1>{error}</h1>}
     </form>
   </section>
   )
