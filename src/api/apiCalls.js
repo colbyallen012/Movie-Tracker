@@ -8,3 +8,22 @@ export const fetchMovies = () => {
       .catch (error => error.message)   
 }
 
+export const getUser = async (user) => {
+  try {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+   
+    const response = await fetch('http://localhost:3000/api/users', options)
+    const result = await response.json()
+
+    return result.data
+  } catch (error) {
+    console.log(error.message)
+    // throw Error(error.message)
+  } 
+}
