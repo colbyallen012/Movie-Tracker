@@ -6,12 +6,13 @@ import { connect } from 'react-redux';
 // import { bindActionCreators } from 'redux';
 
 class AccountMenu extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      display: 'start'
     };
   }
   
@@ -22,7 +23,8 @@ class AccountMenu extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.addUser(this.state)
+    this.getUser(this.state)
+    this.setState({display: 'loggedIn'})
   }
 
   getUser = async (user) => {
@@ -68,10 +70,21 @@ class AccountMenu extends Component {
   }
 
   render() {
+    const isLoggedIn = this.state.display === 'loggedIn'
+    let view;
+    const propped = this.props.user
+    console.log(propped)
+    
+    if(!isLoggedIn) {
+      view = <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+    } else {
+      view = <h2>{`Welcome ${this.props.user.name}!`}</h2>
+    }
     return (  
       <div>
-        {/* <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/> */}
-        <SignUp name={this.state.name} email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
+        {view}
+        {/* <SignUp name={this.state.name} email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/> */}
       </div>
     )
   }

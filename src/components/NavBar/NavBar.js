@@ -4,12 +4,12 @@ import MovieContainter from '../MovieContainer/MovieContainer'
 import MovieSpecs from '../MovieSpecs/MovieSpecs'
 import AccountMenu from '../AccountMenu/AccountMenu'
 
-const NavBar = ({movies}) => {
+const NavBar = ({movies, user}) => {
   return (
     <div className = 'header'>
       <NavLink to='/' className='nav'>Movies</NavLink>
       <NavLink to='/favorites' className='nav'>Favorites</NavLink>
-      <AccountMenu />
+      <AccountMenu user={user}/>
       <Route exact path='/' render={() => <MovieContainter movies={movies}/>} />
       <Route exact path='/:id' render={({match}) => {
         const {id} = match.params;
