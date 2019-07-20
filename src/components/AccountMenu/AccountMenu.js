@@ -4,11 +4,8 @@ import { SignUp } from '../SignUp/SignUp'
 import { signUp } from '../../actions';
 import { login } from '../../actions';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
 import { Redirect } from 'react-router'
-import MovieContainter from '../MovieContainer/MovieContainer'
 
-// import { bindActionCreators } from 'redux';
 
 class AccountMenu extends Component {
   constructor(props) {
@@ -47,6 +44,7 @@ class AccountMenu extends Component {
 
       return this.props.login(result.data)
     } catch (error) {
+      // console.log(error)
       throw Error(error.message)
     } 
   }
@@ -66,13 +64,11 @@ class AccountMenu extends Component {
   render() {
     const isLoggedIn = this.state.display === 'loggedIn'
     let view;
-    const propped = this.props.user
-    console.log(propped)
     
     if(!isLoggedIn) {
       view = <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
     } else {
-      view = <Redirect to='/login'/>
+      view = <Redirect to='/Login'/>
     }
     return (  
       <div>

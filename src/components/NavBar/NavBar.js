@@ -1,33 +1,56 @@
-import React from 'react';
+// import React from 'react';
+import React, { Component } from 'react';
 import {Route, NavLink} from 'react-router-dom'
 import MovieContainter from '../MovieContainer/MovieContainer'
 import MovieSpecs from '../MovieSpecs/MovieSpecs'
 import AccountMenu from '../AccountMenu/AccountMenu'
+import { logOut } from '../../actions';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router'
 
-const NavBar = ({movies, user}) => {
+
+class NavBar extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  logoutUser = (e) => {
+    e.preventDefault()
+    this.props.logout()
+  }
+
+  render () {
   return (
     <div className = 'header'>
-      <NavLink to='/' className='nav'>Movies</NavLink>
       <NavLink to='/favorites' className='nav'>Favorites</NavLink>
-      <AccountMenu user={user}/>
-      <Route exact path='/' render={() => <MovieContainter movies={movies}/>} />
-      <Route exact path='/login' render={() =>
+      <Route exact path='/' render={() => 
+      <div>
+        <AccountMenu user={this.props.user}/>
+        <MovieContainter movies={this.props.movies}/> 
+      </div>
+      }/>
+      <Route exact path='/Login' render={() =>
         <div>
-          <h2>{`Welcome ${user.name}!`}</h2>
-          <button>Sign Out</button>
-          <MovieContainter movies={movies}/> 
+          <h2>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
+          <button onClick={this.logoutUser}>Sign Out</button>
+          <MovieContainter movies={this.props.movies}/> 
         </div> 
       }/>
       <Route exact path='/:id' render={({match}) => {
         const {id} = match.params;
-        const description = movies.find(movie => {
+        const description = this.props.movies.find(movie => {
           return movie.id === parseInt(id)
         });
         return description && <MovieSpecs {...description} />
       }}/>
       <Route exact path='/Favorites' component={MovieContainter}/>
     </div>
-  )
+    )
+  }
 }
 
-export default NavBar;
+const mapDispatchToProps = dispatch => ({
+  logout: () => dispatch(logOut())
+});
+
+export default connect(null, mapDispatchToProps)(NavBar);
