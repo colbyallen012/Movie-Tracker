@@ -15,7 +15,11 @@ class MovieSpecs extends Component {
   handleClick = () => {
     const { title, poster_path, overview, vote_average, release_date, user, id } = this.props;
     console.log(this.props.user)
-    this.favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview });
+    if (this.props.isFavorited === false) {
+      this.favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview, isFavorited: true});
+    } else {
+      
+    }
   }
 
   favoriteMovie = async (favoriteInfo) => {
