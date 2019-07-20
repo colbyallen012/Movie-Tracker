@@ -3,7 +3,8 @@ import { Login } from '../Login/Login';
 import { SignUp } from '../SignUp/SignUp'
 import { signUp, login, showError } from '../../actions';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
+import { Redirect } from 'react-router'
+
 
 class AccountMenu extends Component {
   constructor(props) {
@@ -42,6 +43,7 @@ class AccountMenu extends Component {
 
       return this.props.login(result.data)
     } catch (error) {
+      // console.log(error)
       throw Error(error.message)
     } 
   }
@@ -72,13 +74,11 @@ class AccountMenu extends Component {
   render() {
     const isLoggedIn = this.state.display === 'loggedIn'
     let view;
-    const propped = this.props.user
-    console.log(propped)
     
     if(!isLoggedIn) {
       view = <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
     } else {
-      view = <h2>{`Welcome ${this.props.user.name}!`}</h2>
+      view = <Redirect to='/Login'/>
     }
     return (  
       <div>
