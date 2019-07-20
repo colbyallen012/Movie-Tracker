@@ -6,7 +6,7 @@ const rootReducer = combineReducers({
   movies: movieReducer,
   login: loginUserReducer,
   signUp: signUpReducer,
-  showError: showErrorReducer
+  error: showErrorReducer
 });
 
 export default rootReducer;

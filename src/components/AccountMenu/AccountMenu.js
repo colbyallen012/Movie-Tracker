@@ -58,7 +58,7 @@ class AccountMenu extends Component {
       const result = await response.json()
       
       if (!response.ok) {
-        return this.props.showError('This user already exists')
+        return this.props.showError('An account has already been created with this email')
       } else {
         return this.props.signUp(result.data)
       }
@@ -80,7 +80,7 @@ class AccountMenu extends Component {
 const mapStateToProps = (store) => ({
   signUp: store.signUp,
   login: store.login,
-  showError: store.showError
+  error: store.showError
 });
 
 const mapDispatchToProps = (dispatch) => ({
