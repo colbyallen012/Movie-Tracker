@@ -4,7 +4,8 @@ import {Route, NavLink} from 'react-router-dom'
 import MovieContainter from '../MovieContainer/MovieContainer'
 import MovieSpecs from '../MovieSpecs/MovieSpecs'
 import AccountMenu from '../AccountMenu/AccountMenu'
-import { logOut } from '../../actions';
+import SignUpMenu  from '../SignUpMenu/SignUpMenu'
+import { logOut, signUp } from '../../actions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'
 
@@ -23,6 +24,7 @@ class NavBar extends Component {
   return (
     <div className = 'header'>
       <NavLink to='/favorites' className='nav'>Favorites</NavLink>
+      <NavLink to='/signup' className='nav'>Signup</NavLink>
       <Route exact path='/' render={() => 
       <div>
         <AccountMenu user={this.props.user}/>
@@ -44,6 +46,12 @@ class NavBar extends Component {
         return description && <MovieSpecs {...description} />
       }}/>
       <Route exact path='/Favorites' component={MovieContainter}/>
+      <Route exact path='/signup' render={() => 
+      <div>
+        <SignUpMenu user={this.props.user}/>
+        <MovieContainter movies={this.props.movies}/> 
+      </div>
+      }/>
     </div>
     )
   }
