@@ -4,6 +4,10 @@ import { SignUp } from '../SignUp/SignUp'
 import { signUp } from '../../actions';
 import { login } from '../../actions';
 import { connect } from 'react-redux';
+import { Route } from 'react-router-dom';
+import { Redirect } from 'react-router'
+import MovieContainter from '../MovieContainer/MovieContainer'
+
 // import { bindActionCreators } from 'redux';
 
 class AccountMenu extends Component {
@@ -68,7 +72,7 @@ class AccountMenu extends Component {
     if(!isLoggedIn) {
       view = <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
     } else {
-      view = <h2>{`Welcome ${this.props.user.name}!`}</h2>
+      view = <Redirect to='/login'/>
     }
     return (  
       <div>

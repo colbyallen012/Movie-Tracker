@@ -11,6 +11,13 @@ const NavBar = ({movies, user}) => {
       <NavLink to='/favorites' className='nav'>Favorites</NavLink>
       <AccountMenu user={user}/>
       <Route exact path='/' render={() => <MovieContainter movies={movies}/>} />
+      <Route exact path='/login' render={() =>
+        <div>
+          <h2>{`Welcome ${user.name}!`}</h2>
+          <button>Sign Out</button>
+          <MovieContainter movies={movies}/> 
+        </div> 
+      }/>
       <Route exact path='/:id' render={({match}) => {
         const {id} = match.params;
         const description = movies.find(movie => {
