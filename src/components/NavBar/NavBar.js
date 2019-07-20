@@ -5,7 +5,7 @@ import MovieContainter from '../MovieContainer/MovieContainer'
 import MovieSpecs from '../MovieSpecs/MovieSpecs'
 import AccountMenu from '../AccountMenu/AccountMenu'
 import SignUpMenu  from '../SignUpMenu/SignUpMenu'
-import { logOut, signUp } from '../../actions';
+import { logOut } from '../../actions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'
 

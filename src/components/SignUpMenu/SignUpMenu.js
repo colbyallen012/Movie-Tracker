@@ -3,7 +3,7 @@ import { SignUp } from '../SignUp/SignUp'
 import { login, showError } from '../../actions';
 import { connect } from 'react-redux';
 import { getUser } from '../../api/apiCalls'
-
+import { Redirect } from 'react-router'
 
 class SignUpMenu extends Component {
   constructor(props) {
@@ -11,7 +11,8 @@ class SignUpMenu extends Component {
     this.state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      display: ''
     };
   }
 
@@ -24,6 +25,7 @@ class SignUpMenu extends Component {
     e.preventDefault()
     this.addUser(this.state)
     .then(user => this.props.login(user))
+    this.setState({display: 'loggedIn'})
   }
 
   addUser = async (user) => {
@@ -51,9 +53,17 @@ class SignUpMenu extends Component {
   }
 
   render() {
+    const isLoggedIn = this.state.display === 'loggedIn'
+    let view;
+
+    if(!isLoggedIn) {
+      view = <SignUp name={this.state.name} email={this.state.email} password={this.state.password} handleAddChange={this.handleAddChange} handleAdd={this.handleAdd}/>
+    } else {
+      view = <Redirect to='/Login'/>
+    }
     return (
       <div>
-        <SignUp name={this.state.name} email={this.state.email} password={this.state.password} handleAddChange={this.handleAddChange} handleAdd={this.handleAdd}/>
+        {view}
       </div>
     )
   }

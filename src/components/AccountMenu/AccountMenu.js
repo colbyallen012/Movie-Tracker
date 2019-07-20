@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Login } from '../Login/Login';
-import { SignUp } from '../SignUp/SignUp'
-import { signUp, login, showError } from '../../actions';
+import { login, showError } from '../../actions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'
 import { getUser } from '../../api/apiCalls'
@@ -41,7 +40,6 @@ class AccountMenu extends Component {
     }
     return (  
       <div>
-        {/* <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/> */}
         {view}
       </div>
     )
