@@ -48,7 +48,7 @@ class AccountMenu extends Component {
 
 const mapStateToProps = (store) => ({
   login: store.login,
-  showError: store.showError
+  error: store.showError
 });
 
 const mapDispatchToProps = (dispatch) => ({
