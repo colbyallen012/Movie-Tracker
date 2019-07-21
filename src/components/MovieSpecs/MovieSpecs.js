@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../MovieSpecs/MovieSpecs.css'
 import { connect } from 'react-redux';
-import { favoriteMovie } from '../../api/apiCalls'; 
+import { favoriteMovie, removeFavorite } from '../../api/apiCalls';
 
 class MovieSpecs extends Component {
   constructor(props) {
@@ -14,25 +14,11 @@ class MovieSpecs extends Component {
 
   handleClick = () => {
     const { title, poster_path, overview, vote_average, release_date, user, id } = this.props;
-    this.favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview });
-  }
-  
-  favoriteMovie = async (favoriteInfo) => {
-    try {
-      const options = {
-        method: 'POST',
-        body: JSON.stringify(favoriteInfo),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-      
-      const response = await fetch(`http://localhost:3000/api/users/favorites/new`, options)
-      const result = await response.json()
-      return result;
-    } catch (error) {
-      console.log(error)
-      this.setState({ error: 'You need to log in to add favorites' })
+    console.log(this.props.user)
+    if (this.props.isFavorited === false) {
+      favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview, isFavorited: true});
+    } else {
+      removeFavorite(user.id, id);
     }
   }
   
