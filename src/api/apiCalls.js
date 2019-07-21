@@ -40,11 +40,35 @@ export const favoriteMovie = async (userId, movieInfo) => {
 
     const response = await fetch(`http://localhost:3000/api/users/favorites/new`, options)
     const result = await response.json()
+
   } catch (error) {
     console.log(error)
   }
 }
 
-export const viewFavorites = () => {
+export const fetchFavorites = async (userId) => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/users/${userId}/favorites`);
+    const result = await response.json();
+    return result.data
+  } catch (error) {
+    throw new Error('Failed to fetch favorites');
+  }
+}
 
+export const removeFavorite = async (userId, movieId) => {
+  try {
+    const option = {
+      method: 'DELETE',
+      body: JSON.stringify(userId, movieId),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const response = await fetch(`http://localhost:3000/api/users/${userId}/favorites/${movieId}`, option);
+    // const result = await response.json();
+  } catch (error) {
+
+  }
 }

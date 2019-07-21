@@ -16,28 +16,9 @@ class MovieSpecs extends Component {
     const { title, poster_path, overview, vote_average, release_date, user, id } = this.props;
     console.log(this.props.user)
     if (this.props.isFavorited === false) {
-      this.favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview, isFavorited: true});
+      favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview, isFavorited: true});
     } else {
-      
-    }
-  }
-
-  favoriteMovie = async (favoriteInfo) => {
-    console.log({...favoriteInfo});
-    try {
-      const options = {
-        method: 'POST',
-        body: JSON.stringify(favoriteInfo),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-
-      const response = await fetch(`http://localhost:3000/api/users/favorites/new`, options)
-      const result = await response.json()
-      return result;
-    } catch (error) {
-      console.log(error)
+      console.log('already favorited')
     }
   }
 
