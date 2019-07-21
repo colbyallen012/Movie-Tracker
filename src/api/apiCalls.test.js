@@ -58,8 +58,10 @@ describe('apiCalls', () => {
 
   describe("getUser", () => {
     let mockResponse;
+    let user;
 
     beforeEach(() => {
+      user = { email: 'something@nowhere.com', name: 'name', password: 'password' }
       mockResponse = { email: 'something@nowhere.com', name: 'name', password: 'password', id: 1 };
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
@@ -73,14 +75,18 @@ describe('apiCalls', () => {
       
       const options = {
         method: 'POST',
-        body: JSON.stringify(mockResponse),
+        body: JSON.stringify(user),
         headers: {
           'Content-Type': 'application/json'
         }
-      }
-      const url = `http://localhost:3000/api/users`
-      getUser(mockResponse)
-      expect(window.fetch).toHaveBeenCalledWith(url, options)
+      };
+      const url = `http://localhost:3000/api/users`;
+      getUser(user);
+      expect(window.fetch).toHaveBeenCalledWith(url, options);
+    });
+
+    it('should return a user if response is ok', async () => {
+      await expect(getUser(user)).resolves.toEqual(mockResponse);
     });
   });
 });
