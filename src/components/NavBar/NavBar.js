@@ -8,6 +8,7 @@ import SignUpMenu  from '../SignUpMenu/SignUpMenu'
 import { logOut } from '../../actions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'
+import './NavBar.css'
 
 
 class NavBar extends Component {
@@ -22,9 +23,16 @@ class NavBar extends Component {
 
   render () {
   return (
-    <div className = 'header'>
-      <NavLink to='/favorites' className='nav'>Favorites</NavLink>
-      <NavLink to='/signup' className='nav'>Signup</NavLink>
+    <div>
+      <div className = 'header'>
+        <h1 className='app-name'> <span className='bang'>!</span>Netflix</h1>
+        <NavLink to='/favorites' className='nav-fav'>
+          <button className='nav-btn'>Favorites</button>
+        </NavLink>
+        <NavLink to='/signup' className='nav-sign-up'>
+          <button className='nav-btn'>Sign Up</button>
+        </NavLink>
+      </div>
       <Route exact path='/' render={() => 
       <div>
         <AccountMenu user={this.props.user}/>

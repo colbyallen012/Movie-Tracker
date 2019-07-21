@@ -8,7 +8,7 @@ class MovieSpecs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      error: ''
     }
   }
 
@@ -21,19 +21,25 @@ class MovieSpecs extends Component {
       removeFavorite(user.id, id);
     }
   }
-
+  
   render() {
     const { title, backdrop_path, overview, vote_average, release_date, user} = this.props;
+    console.log(this.props)
     const imgSrc = `http://image.tmdb.org/t/p/w1280//${backdrop_path}`
     return (
       <div className='container'>
-        <h1 className='title'>{title} <span className='rating'> Rating : {vote_average} / 10 </span></h1>
+        <h1 className='title'>{title}
+          <span className='rating'> Rating : {vote_average} / 10 </span>
+          <button onClick={() => this.handleClick()} className='btn'>
+            Add to Favorites
+          </button>
+        </h1>
         <img src={imgSrc} alt="movie backdrop" className='back-drop'/>
         <p className='description'>{overview}</p>
         <p className='date'>Release Date: {release_date}</p>
-        <button onClick={() => this.handleClick()} >Favorite</button>
-        <Link to={`/`} className='back-btn'>
-          <button className='btn'>
+        <h3>{this.state.error}</h3>
+        <Link to={`/Login`}>
+          <button className='back-btn'>
            ◀ back
           </button>
         </Link>
