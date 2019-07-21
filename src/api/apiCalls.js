@@ -28,11 +28,11 @@ export const getUser = async (user) => {
   } 
 }
 
-export const favoriteMovie = async (userId, movieInfo) => {
+export const favoriteMovie = async (movieInfo) => {
   try {
     const options = {
       method: 'POST',
-      body: JSON.stringify(userId, ...movieInfo),
+      body: JSON.stringify(movieInfo),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -40,7 +40,7 @@ export const favoriteMovie = async (userId, movieInfo) => {
 
     const response = await fetch(`http://localhost:3000/api/users/favorites/new`, options)
     const result = await response.json()
-
+    return result.data
   } catch (error) {
     console.log(error)
   }
@@ -67,7 +67,7 @@ export const removeFavorite = async (userId, movieId) => {
     }
 
     const response = await fetch(`http://localhost:3000/api/users/${userId}/favorites/${movieId}`, option);
-    // const result = await response.json();
+    const result = await response.json();
   } catch (error) {
 
   }
