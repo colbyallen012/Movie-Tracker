@@ -52,7 +52,7 @@ class MovieSpecs extends Component {
         <p className='description'>{overview}</p>
         <p className='date'>Release Date: {release_date}</p>
         <h3>{this.state.error}</h3>
-        <Link to={`/`}>
+        <Link to={`/Login`}>
           <button className='back-btn'>
            ◀ back
           </button>
