@@ -7,7 +7,6 @@ import AccountMenu from '../AccountMenu/AccountMenu'
 import SignUpMenu  from '../SignUpMenu/SignUpMenu'
 import { logOut } from '../../actions';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router'
 import './NavBar.css'
 
 
@@ -49,11 +48,12 @@ class NavBar extends Component {
       <Route exact path='/:id' render={({match}) => {
         const {id} = match.params;
         const description = this.props.movies.find(movie => {
+          movie.isFavorited = false
           return movie.id === parseInt(id)
         });
         return description && <MovieSpecs {...description} />
       }}/>
-      <Route exact path='/Favorites' component={MovieContainter}/>
+      <Route exact path='/Favorites' render={() => <MovieContainter movies={this.props.userFavorites} />}/>
       <Route exact path='/signup' render={() => 
       <div>
         <SignUpMenu user={this.props.user}/>
@@ -65,8 +65,12 @@ class NavBar extends Component {
   }
 }
 
+const mapStateToProps = store => ({
+  userFavorites: store.userFavorites
+})
+
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logOut())
 });
 
-export default connect(null, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
