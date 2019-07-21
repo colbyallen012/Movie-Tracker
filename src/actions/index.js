@@ -17,7 +17,8 @@ export const showError = (error) => ({
   error
 });
 
-export const toggleFavorite = (movieId) => ({
-  type: 'TOGGLE_FAVORITE',
-  movieId
+export const setFavorites = (favorites) => ({
+  type: 'SET_FAVORITES',
+  favorites
 })
+ 

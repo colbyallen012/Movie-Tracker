@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../MovieSpecs/MovieSpecs.css'
 import { connect } from 'react-redux';
-import { favoriteMovie, removeFavorite } from '../../api/apiCalls';
-import { toggleFavorite } from '../../actions';
+import { favoriteMovie, removeFavorite, fetchFavorites } from '../../api/apiCalls';
+import { setFavorites } from '../../actions'
 
 
 class MovieSpecs extends Component {
@@ -14,17 +14,20 @@ class MovieSpecs extends Component {
     }
   }
 
-  handleFavorite = () => {
-    const { title, poster_path, overview, vote_average, release_date, user, id} = this.props;
-
-      favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview, isFavorited: true });
-      console.log('no', this.props)
+  handleFavorite = async () => {
+    try {
+      const { title, poster_path, overview, vote_average, release_date, user, id} = this.props;
+      await favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview});
+      await fetchFavorites(user.id)
+      .then(result => this.props.setFavorites(result))
+    } catch (error) {
+      console.log(error.message)
+    }
 
   }
 
   handleDelete = () => {
     const {user, id} = this.props;
-
     removeFavorite(user.id, id);
   }
 
@@ -63,9 +66,8 @@ const mapStateToProps = store => ({
   user: store.login,
 })
 
-const mapdispatchToProps = dispatch => ({
-  toggleFavorite: (movieId) => dispatch(toggleFavorite(movieId))
-
+const mapDispatchToProps = dispatch => ({
+  setFavorites: (favorites) => dispatch(setFavorites(favorites))
 })
 
-export default connect(mapStateToProps, mapdispatchToProps)(MovieSpecs);
+export default connect(mapStateToProps, mapDispatchToProps)(MovieSpecs);

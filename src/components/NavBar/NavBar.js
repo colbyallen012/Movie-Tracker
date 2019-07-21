@@ -53,7 +53,7 @@ class NavBar extends Component {
         });
         return description && <MovieSpecs {...description} />
       }}/>
-      <Route exact path='/Favorites' component={MovieContainter}/>
+      <Route exact path='/Favorites' render={() => <MovieContainter movies={this.props.userFavorites} />}/>
       <Route exact path='/signup' render={() => 
       <div>
         <SignUpMenu user={this.props.user}/>
@@ -65,8 +65,12 @@ class NavBar extends Component {
   }
 }
 
+const mapStateToProps = store => ({
+  userFavorites: store.userFavorites
+})
+
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logOut())
 });
 
-export default connect(null, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

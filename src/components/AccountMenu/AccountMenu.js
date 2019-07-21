@@ -4,6 +4,8 @@ import { login, showError } from '../../actions';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router'
 import { getUser } from '../../api/apiCalls'
+import { fetchFavorites } from '../../api/apiCalls';
+import { setFavorites } from '../../actions'
 
 class AccountMenu extends Component {
   constructor(props) {
@@ -22,11 +24,17 @@ class AccountMenu extends Component {
     this.setState({ [name]: value })
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    getUser(this.state)
-    .then(data => this.props.login(data))
-    this.setState({display: 'loggedIn'})
+  handleSubmit = async (e) => {
+    try {
+      e.preventDefault()
+      await getUser(this.state)
+      .then(data => this.props.login(data))
+      this.setState({display: 'loggedIn'})
+      await fetchFavorites(this.props.user.id)
+        .then(result => this.props.setFavorites(result))
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   render() {
@@ -48,12 +56,14 @@ class AccountMenu extends Component {
 
 const mapStateToProps = (store) => ({
   login: store.login,
+  user: store.login,
   error: store.showError
 });
 
 const mapDispatchToProps = (dispatch) => ({
   login: (user) => dispatch(login(user)),
-  showError: (error) => dispatch(showError(error))
+  showError: (error) => dispatch(showError(error)),
+  setFavorites: (favorites) => dispatch(setFavorites(favorites))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountMenu)
