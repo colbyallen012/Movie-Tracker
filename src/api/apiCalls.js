@@ -60,7 +60,7 @@ export const removeFavorite = async (userId, movieId) => {
   try {
     const option = {
       method: 'DELETE',
-      body: JSON.stringify(userId, movieId),
+      // body: JSON.stringify(userId, movieId),
       headers: {
         'Content-Type': 'application/json'
       }

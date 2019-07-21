@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../MovieSpecs/MovieSpecs.css'
 import { connect } from 'react-redux';
-import { favoriteMovie } from '../../api/apiCalls'; 
+import { favoriteMovie, removeFavorite } from '../../api/apiCalls';
 
 class MovieSpecs extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class MovieSpecs extends Component {
     if (this.props.isFavorited === false) {
       favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview, isFavorited: true});
     } else {
-      console.log('already favorited')
+      removeFavorite(user.id, id);
     }
   }
 
