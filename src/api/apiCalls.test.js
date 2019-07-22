@@ -52,7 +52,7 @@ describe('apiCalls', () => {
         })
       });
   
-      expect(fetchMovies()).resolves.toEqual(Error(''))
+      await expect(fetchMovies()).resolves.toEqual(Error(''))
     });
   });
 
@@ -85,8 +85,18 @@ describe('apiCalls', () => {
       expect(window.fetch).toHaveBeenCalledWith(url, options);
     });
 
-    it('should return a user if response is ok', async () => {
+    it('should return a user if response is ok', async () => {  
       await expect(getUser(user)).resolves.toEqual(mockResponse);
+    });
+
+    it('should throw an error if response is not ok', async () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+
+      expect(getUser()).resolves.toEqual(Error(''));
     });
   });
 });

@@ -8,6 +8,7 @@ const MovieContainer = ({ movies }) => {
       <Movie
         backDrop={movie.backdrop_path}
         poster={movie.poster_path}
+        rating={movie.vote_average}
         id={movie.id}
         key={movie.id}
         title={movie.title}
