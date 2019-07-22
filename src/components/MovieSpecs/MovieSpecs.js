@@ -14,6 +14,7 @@ class MovieSpecs extends Component {
     }
   }
 
+
   handleFavorite = async () => {
     try {
       const { title, poster_path, overview, vote_average, release_date, user, id} = this.props;
@@ -36,16 +37,16 @@ class MovieSpecs extends Component {
       console.log(error.message)
     }
   }
-
-
-  
+ 
   render() {
     const { title, backdrop_path, overview, vote_average, release_date, user} = this.props;
+    console.log(this.props)
     const imgSrc = `http://image.tmdb.org/t/p/w1280//${backdrop_path}`
     return (
       <div className='container'>
         <h1 className='title'>{title}
           <span className='rating'> Rating : {vote_average} / 10 </span>
+
           <button onClick={() => this.handleFavorite()} className='btn'>
             Add to Favorites
           </button>
