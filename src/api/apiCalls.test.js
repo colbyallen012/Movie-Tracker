@@ -104,10 +104,29 @@ describe('apiCalls', () => {
   });
 
   describe('addUser', () => {
-    let mockResponse;
+    let user;
     
     beforeEach(() => {
-      mockResponse = {}
+      user = user = { email: 'something@nowhere.com', name: 'name', password: 'password' }
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          // json: () => Promise.resolve(user)
+        });
+      });
+    });
+
+    it('should POST a new user given the correct url', () => {
+      const url = 'http://localhost:3000/api/users/new';
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      addUser(user)
+      expect(window.fetch).toHaveBeenCalledWith(url, options)
     })
   });
 });
