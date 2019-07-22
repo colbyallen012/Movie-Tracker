@@ -19,15 +19,11 @@ export const addUser = async (user) => {
     }
 
     const response = await fetch('http://localhost:3000/api/users/new', options)
-    const result = await response.json()
   
-    if (!response.ok) {
-      return this.props.showError('This user already exists')
-    } else {
-      return this.props.signUp(result.data)
-    }
+    return response.ok;
   } catch (error) {
-    throw Error(error.message);
+    console.log(error.message);
+    throw new Error("Failed to post error");
   }
 }
 
@@ -43,11 +39,10 @@ export const getUser = async (user) => {
    
     const response = await fetch('http://localhost:3000/api/users', options)
     const result = await response.json()
-
+    
     return result.data
   } catch (error) {
-    console.log(error.message)
-    // throw Error(error.message)
+    throw new Error("Email and password do not match");
   } 
 }
 
@@ -65,7 +60,7 @@ export const favoriteMovie = async (movieInfo) => {
     const result = await response.json()
     // return result.data
   } catch (error) {
-    console.log(error);
+    throw new Error("failed to fetch favorites");
   }
 }
 

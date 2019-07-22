@@ -16,7 +16,7 @@ class AccountMenu extends Component {
       email: '',
       password: '',
       display: 'start',
-      error: ''
+      error: null
     };
   }
   
@@ -34,7 +34,7 @@ class AccountMenu extends Component {
       await fetchFavorites(this.props.user.id)
         .then(result => this.props.setFavorites(result))
     } catch (error) {
-      console.log(error.message)
+      this.setState({ error: error.message })
     }
   }
 
@@ -46,10 +46,11 @@ class AccountMenu extends Component {
       view = <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
     } else {
       view = <Redirect to='/LoggedIn'/>
-    }
+    } 
     return (  
       <div className='log-in-bar'>
         {view}
+        {this.state.error && <h2 className='error'>{this.state.error}</h2>}
       </div>
     )
   }
