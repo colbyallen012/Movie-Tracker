@@ -1,4 +1,4 @@
-import { fetchMovies, getUser } from './apiCalls';
+import { fetchMovies, getUser, addUser } from './apiCalls';
 import { apiKey } from '../apiKey'
 import { async } from 'q';
 
@@ -6,6 +6,7 @@ describe('apiCalls', () => {
   
   describe("fetchMovies", () => {
     let mockResponse;
+    
     beforeEach(() => {
       mockResponse = {
         results: [{
@@ -52,7 +53,7 @@ describe('apiCalls', () => {
         })
       });
   
-      await expect(fetchMovies()).resolves.toEqual(Error(''))
+      await expect(fetchMovies()).resolves.toMatch('')
     });
   });
 
@@ -62,7 +63,9 @@ describe('apiCalls', () => {
 
     beforeEach(() => {
       user = { email: 'something@nowhere.com', name: 'name', password: 'password' }
-      mockResponse = { email: 'something@nowhere.com', name: 'name', password: 'password', id: 1 };
+      mockResponse = {
+        data: { email: 'something@nowhere.com', name: 'name', password: 'password', id: 1 }
+      };
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           ok: true,
@@ -84,9 +87,10 @@ describe('apiCalls', () => {
       getUser(user);
       expect(window.fetch).toHaveBeenCalledWith(url, options);
     });
-
+    
     it('should return a user if response is ok', async () => {  
-      await expect(getUser(user)).resolves.toEqual(mockResponse);
+      console.log(getUser(user))
+      await expect(getUser(user)).resolves.toEqual(mockResponse.data);
     });
 
     it('should throw an error if response is not ok', async () => {
@@ -95,8 +99,15 @@ describe('apiCalls', () => {
           ok: false
         });
       });
-
-      expect(getUser()).resolves.toEqual(Error(''));
+      expect(getUser()).resolves.toMatch('');
     });
+  });
+
+  describe('addUser', () => {
+    let mockResponse;
+    
+    beforeEach(() => {
+      mockResponse = {}
+    })
   });
 });
