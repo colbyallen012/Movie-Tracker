@@ -45,7 +45,7 @@ class AccountMenu extends Component {
     if(!isLoggedIn) {
       view = <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
     } else {
-      view = <Redirect to='/Login'/>
+      view = <Redirect to='/LoggedIn'/>
     }
     return (  
       <div className='log-in-bar'>

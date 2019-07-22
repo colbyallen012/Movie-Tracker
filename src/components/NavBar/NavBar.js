@@ -28,17 +28,26 @@ class NavBar extends Component {
         <NavLink to='/favorites' className='nav-fav'>
           <button className='nav-btn'>Favorites</button>
         </NavLink>
+        <NavLink to='/Login' className='nav-log-in'>
+          <button className='nav-log-in-btn'>Login</button>
+        </NavLink>
         <NavLink to='/signup' className='nav-sign-up'>
           <button className='nav-btn'>Sign Up</button>
         </NavLink>
       </div>
       <Route exact path='/' render={() => 
         <section>
+          {/* <AccountMenu user={this.props.user}/> */}
+          <MovieContainter movies={this.props.movies}/> 
+        </section>
+      }/>
+      <Route exact path='/Login' render={() => 
+        <section>
           <AccountMenu user={this.props.user}/>
           <MovieContainter movies={this.props.movies}/> 
         </section>
       }/>
-      <Route exact path='/Login' render={() =>
+      <Route exact path='/LoggedIn' render={() =>
         <section>
           <div className='logged-in-bar'>
             <h2 className='user-name'>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
@@ -56,8 +65,10 @@ class NavBar extends Component {
       }}/>
       <Route exact path='/Favorites' render={() =>
       <section>
-        <h2>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
-        <button onClick={this.logoutUser}>Sign Out</button>
+        <div className='logged-in-bar'>
+          <h2 className='user-name'>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
+          <button className='sign-out-btn' onClick={this.logoutUser}>Sign Out</button>
+        </div>
         <MovieContainter movies={this.props.userFavorites} />
       </section>
       }/>
