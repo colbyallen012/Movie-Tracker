@@ -19,15 +19,11 @@ export const addUser = async (user) => {
     }
 
     const response = await fetch('http://localhost:3000/api/users/new', options)
-    const result = await response.json()
   
-    if (!response.ok) {
-      return this.props.showError('This user already exists')
-    } else {
-      return this.props.signUp(result.data)
-    }
+    return response.ok;
   } catch (error) {
-    throw new Error("Email has already been used");
+    console.log(error.message);
+    throw new Error("Failed to post error");
   }
 }
 
