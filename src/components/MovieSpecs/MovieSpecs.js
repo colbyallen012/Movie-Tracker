@@ -26,9 +26,15 @@ class MovieSpecs extends Component {
 
   }
 
-  handleDelete = () => {
-    const {user, id} = this.props;
-    removeFavorite(user.id, id);
+  handleDelete = async () => {
+    try {
+      const {user, id} = this.props;
+      await removeFavorite(user.id, id)
+      await fetchFavorites(user.id)
+      .then(result => this.props.setFavorites(result))
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
 
