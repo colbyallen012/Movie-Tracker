@@ -10,17 +10,22 @@ class MovieSpecs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: ''
+      error: '',
+      isFavorited: false,
     }
   }
 
 
   handleFavorite = async () => {
+    if (this.state.isFavorited === true) {
+      return
+    }
     try {
       const { title, poster_path, overview, vote_average, release_date, user, id} = this.props;
       await favoriteMovie({ movie_id: id, user_id: user.id, title, poster_path, release_date, vote_average, overview});
       await fetchFavorites(user.id)
       .then(result => this.props.setFavorites(result))
+      this.setState({ isFavorited: true })
     } catch (error) {
       console.log(error.message)
     }
@@ -33,6 +38,7 @@ class MovieSpecs extends Component {
       await removeFavorite(user.id, id)
       await fetchFavorites(user.id)
       .then(result => this.props.setFavorites(result))
+      this.setState({ isFavorited: false });
     } catch (error) {
       console.log(error.message)
     }
