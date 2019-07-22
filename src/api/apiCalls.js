@@ -63,9 +63,9 @@ export const favoriteMovie = async (movieInfo) => {
 
     const response = await fetch(`http://localhost:3000/api/users/favorites/new`, options)
     const result = await response.json()
-    return result.data
+    // return result.data
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 }
 

@@ -1,4 +1,4 @@
-import { fetchMovies, getUser, addUser } from './apiCalls';
+import { fetchMovies, getUser, addUser, favoriteMovie } from './apiCalls';
 import { apiKey } from '../apiKey'
 import { async } from 'q';
 
@@ -127,6 +127,59 @@ describe('apiCalls', () => {
       };
       addUser(user)
       expect(window.fetch).toHaveBeenCalledWith(url, options)
+    });
+
+    it('should throw an error if response is not ok', async () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+      expect(addUser(user)).resolves.toMatch('');
+    });
+  });
+
+  describe('favoriteMovie', () => {
+    let movieInfo;
+
+    beforeEach(() => {
+      movieInfo = {
+        movie_id: 1,
+        user_id: 1,
+        title: 'title',
+        poster_path: 'something.jpg',
+        release_date: '11/05/2000',
+        vote_average: 7,
+        overview: "I don't know"
+      };
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          // json: () => Promise.resolve(user)
+        });
+      });
     })
+
+    it('should POST a favorite movie given the correct url', () => {
+      const url = 'http://localhost:3000/api/users/favorites/new';
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(movieInfo),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+      favoriteMovie(movieInfo)
+      expect(window.fetch).toHaveBeenCalledWith(url, options)
+    });
+
+    it('should throw an error if response is not ok', async () => {
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: false
+        });
+      });
+      expect(favoriteMovie(movieInfo)).resolves.toMatch('');
+    });
   });
 });
