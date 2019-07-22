@@ -1,4 +1,4 @@
-import { fetchMovies, getUser, addUser, favoriteMovie } from './apiCalls';
+import { fetchMovies, getUser, addUser, favoriteMovie, fetchFavorites } from './apiCalls';
 import { apiKey } from '../apiKey'
 import { async } from 'q';
 
@@ -105,15 +105,17 @@ describe('apiCalls', () => {
 
   describe('addUser', () => {
     let user;
+    let signUp;
     
     beforeEach(() => {
       user = user = { email: 'something@nowhere.com', name: 'name', password: 'password' }
       window.fetch = jest.fn().mockImplementation(() => {
         return Promise.resolve({
           ok: true,
-          // json: () => Promise.resolve(user)
+          json: () => Promise.resolve(user)
         });
       });
+      signUp = jest.fn();
     });
 
     it('should POST a new user given the correct url', () => {
@@ -181,5 +183,47 @@ describe('apiCalls', () => {
       });
       expect(favoriteMovie(movieInfo)).resolves.toMatch('');
     });
+  });
+
+  describe('fetchFavorites', () => {
+    let userId;
+    let mockResponse;
+
+    beforeEach(() => {
+      mockResponse = {
+        results: [{
+          adult: false,
+          backdrop_path: "/dihW2yTsvQlust7mSuAqJDtqW7k.jpg",
+          genre_ids: Array[3],
+          id: 429617,
+          original_language: "en",
+          original_title: "Spider-Man: Far from Home",
+          overview: "Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest - Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural d…",
+          popularity: 461.454,
+          poster_path: "/rjbNpRMoVvqHmhmksbokcyCr7wn.jpg",
+          release_date: "2019-06-28",
+          title: "Spider-Man: Far from Home",
+          video: false,
+          vote_average: 7.8,
+          vote_count: 1815
+        }]};
+      userId = 1;
+      window.fetch = jest.fn().mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve(mockResponse)
+        });
+      });
+    });
+    
+    it('should be able to fetch favorites given correct url', () => {
+      const url = `http://localhost:3000/api/users/${userId}/favorites`
+      fetchFavorites(userId);
+      expect(window.fetch).toHaveBeenCalledWith(url);
+    });
+  });
+
+  describe('removeFavorites', () => {
+
   });
 });

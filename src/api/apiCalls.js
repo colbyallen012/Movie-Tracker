@@ -20,7 +20,7 @@ export const addUser = async (user) => {
 
     const response = await fetch('http://localhost:3000/api/users/new', options)
     const result = await response.json()
-
+  
     if (!response.ok) {
       return this.props.showError('This user already exists')
     } else {
@@ -90,6 +90,7 @@ export const removeFavorite = async (userId, movieId) => {
 
     const response = await fetch(`http://localhost:3000/api/users/${userId}/favorites/${movieId}`, option);
     const result = await response.json();
+    console.log(result);
   } catch (error) {
 
   }
