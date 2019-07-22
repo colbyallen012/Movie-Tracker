@@ -41,7 +41,6 @@ class MovieSpecs extends Component {
   
   render() {
     const { title, backdrop_path, overview, vote_average, release_date, user} = this.props;
-    console.log(this.props)
     const imgSrc = `http://image.tmdb.org/t/p/w1280//${backdrop_path}`
     return (
       <div className='container'>
