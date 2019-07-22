@@ -27,7 +27,7 @@ export const addUser = async (user) => {
       return this.props.signUp(result.data)
     }
   } catch (error) {
-    throw Error(error.message);
+    throw new Error("Email has already been used");
   }
 }
 
@@ -43,11 +43,10 @@ export const getUser = async (user) => {
    
     const response = await fetch('http://localhost:3000/api/users', options)
     const result = await response.json()
-
+    
     return result.data
   } catch (error) {
-    console.log(error.message)
-    // throw Error(error.message)
+    throw new Error("Email and password do not match");
   } 
 }
 
@@ -65,7 +64,7 @@ export const favoriteMovie = async (movieInfo) => {
     const result = await response.json()
     // return result.data
   } catch (error) {
-    console.log(error);
+    throw new Error("failed to fetch favorites");
   }
 }
 
