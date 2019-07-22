@@ -8,16 +8,12 @@ import SignUpMenu  from '../SignUpMenu/SignUpMenu'
 import { logOut } from '../../actions';
 import { connect } from 'react-redux';
 import './NavBar.css'
+import { Link } from 'react-router-dom'
 
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
-  }
-
-  logoutUser = (e) => {
-    e.preventDefault()
-    this.props.logout()
   }
 
   render () {
@@ -37,7 +33,6 @@ class NavBar extends Component {
       </div>
       <Route exact path='/' render={() => 
         <section>
-          {/* <AccountMenu user={this.props.user}/> */}
           <MovieContainter movies={this.props.movies}/> 
         </section>
       }/>
@@ -51,7 +46,9 @@ class NavBar extends Component {
         <section>
           <div className='logged-in-bar'>
             <h2 className='user-name'>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
-            <button className='sign-out-btn' onClick={this.logoutUser}>Sign Out</button>
+          <Link to='/' onClick={() => this.props.logout()}>
+            <button className='sign-out-btn'>Sign Out</button>
+          </Link>
           </div>
           <MovieContainter movies={this.props.movies}/> 
         </section> 
@@ -64,13 +61,15 @@ class NavBar extends Component {
         return description && <MovieSpecs {...description} />
       }}/>
       <Route exact path='/Favorites' render={() =>
-      <section>
-        <div className='logged-in-bar'>
-          <h2 className='user-name'>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
-          <button className='sign-out-btn' onClick={this.logoutUser}>Sign Out</button>
-        </div>
-        <MovieContainter movies={this.props.userFavorites} />
-      </section>
+        <section>
+          <div className='logged-in-bar'>
+            <h2 className='user-name'>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
+          <Link to='/' onClick={() => this.props.logout()}>
+            <button className='sign-out-btn' onClick={this.logoutUser}>Sign Out</button>
+          </Link>
+          </div>
+          <MovieContainter movies={this.props.userFavorites} />
+        </section>
       }/>
       <Route exact path='/signup' render={() => 
         <section>
