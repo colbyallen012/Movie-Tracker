@@ -8,16 +8,12 @@ import SignUpMenu  from '../SignUpMenu/SignUpMenu'
 import { logOut } from '../../actions';
 import { connect } from 'react-redux';
 import './NavBar.css'
+import { Link } from 'react-router-dom'
 
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
-  }
-
-  logoutUser = (e) => {
-    e.preventDefault()
-    this.props.logout()
   }
 
   render () {
@@ -28,37 +24,58 @@ class NavBar extends Component {
         <NavLink to='/favorites' className='nav-fav'>
           <button className='nav-btn'>Favorites</button>
         </NavLink>
+        <NavLink to='/Login' className='nav-log-in'>
+          <button className='nav-log-in-btn'>Login</button>
+        </NavLink>
         <NavLink to='/signup' className='nav-sign-up'>
           <button className='nav-btn'>Sign Up</button>
         </NavLink>
       </div>
       <Route exact path='/' render={() => 
-      <div>
-        <AccountMenu user={this.props.user}/>
-        <MovieContainter movies={this.props.movies}/> 
-      </div>
-      }/>
-      <Route exact path='/Login' render={() =>
-        <div>
-          <h2>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
-          <button onClick={this.logoutUser}>Sign Out</button>
+        <section>
           <MovieContainter movies={this.props.movies}/> 
-        </div> 
+        </section>
+      }/>
+      <Route exact path='/Login' render={() => 
+        <section>
+          <AccountMenu user={this.props.user}/>
+          <MovieContainter movies={this.props.movies}/> 
+        </section>
+      }/>
+      <Route exact path='/LoggedIn' render={() =>
+        <section>
+          <div className='logged-in-bar'>
+            <h2 className='user-name'>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
+          <Link to='/' onClick={() => this.props.logout()}>
+            <button className='sign-out-btn'>Sign Out</button>
+          </Link>
+          </div>
+          <MovieContainter movies={this.props.movies}/> 
+        </section> 
       }/>
       <Route exact path='/:id' render={({match}) => {
         const {id} = match.params;
         const description = this.props.movies.find(movie => {
-          movie.isFavorited = false
           return movie.id === parseInt(id)
         });
         return description && <MovieSpecs {...description} />
       }}/>
-      <Route exact path='/Favorites' render={() => <MovieContainter movies={this.props.userFavorites} />}/>
+      <Route exact path='/Favorites' render={() =>
+        <section>
+          <div className='logged-in-bar'>
+            <h2 className='user-name'>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
+          <Link to='/' onClick={() => this.props.logout()}>
+            <button className='sign-out-btn' onClick={this.logoutUser}>Sign Out</button>
+          </Link>
+          </div>
+          <MovieContainter movies={this.props.userFavorites} />
+        </section>
+      }/>
       <Route exact path='/signup' render={() => 
-      <div>
-        <SignUpMenu user={this.props.user}/>
-        <MovieContainter movies={this.props.movies}/> 
-      </div>
+        <section>
+          <SignUpMenu user={this.props.user}/>
+          <MovieContainter movies={this.props.movies}/> 
+        </section>
       }/>
     </div>
     )

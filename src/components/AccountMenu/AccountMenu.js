@@ -6,6 +6,7 @@ import { Redirect } from 'react-router'
 import { getUser } from '../../api/apiCalls'
 import { fetchFavorites } from '../../api/apiCalls';
 import { setFavorites } from '../../actions'
+import './AccountMenu.css'
 
 class AccountMenu extends Component {
   constructor(props) {
@@ -44,10 +45,10 @@ class AccountMenu extends Component {
     if(!isLoggedIn) {
       view = <Login email={this.state.email} password={this.state.password} handleChange={this.handleChange} handleSubmit={this.handleSubmit}/>
     } else {
-      view = <Redirect to='/Login'/>
+      view = <Redirect to='/LoggedIn'/>
     }
     return (  
-      <div>
+      <div className='log-in-bar'>
         {view}
       </div>
     )

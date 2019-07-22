@@ -4,6 +4,7 @@ import { login, showError } from '../../actions';
 import { connect } from 'react-redux';
 import { getUser } from '../../api/apiCalls'
 import { Redirect } from 'react-router'
+import './SignUpMenu.css'
 
 class SignUpMenu extends Component {
   constructor(props) {
@@ -62,9 +63,9 @@ class SignUpMenu extends Component {
       view = <Redirect to='/Login'/>
     }
     return (
-      <div>
+      <section className='sign-up-bar' >
         {view}
-      </div>
+      </section>
     )
   }
 }
