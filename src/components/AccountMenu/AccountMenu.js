@@ -6,6 +6,7 @@ import { Redirect } from 'react-router'
 import { getUser } from '../../api/apiCalls'
 import { fetchFavorites } from '../../api/apiCalls';
 import { setFavorites } from '../../actions'
+import './AccountMenu.css'
 
 class AccountMenu extends Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class AccountMenu extends Component {
       view = <Redirect to='/Login'/>
     }
     return (  
-      <div>
+      <div className='log-in-bar'>
         {view}
       </div>
     )

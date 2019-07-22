@@ -33,32 +33,39 @@ class NavBar extends Component {
         </NavLink>
       </div>
       <Route exact path='/' render={() => 
-      <div>
-        <AccountMenu user={this.props.user}/>
-        <MovieContainter movies={this.props.movies}/> 
-      </div>
+        <section>
+          <AccountMenu user={this.props.user}/>
+          <MovieContainter movies={this.props.movies}/> 
+        </section>
       }/>
       <Route exact path='/Login' render={() =>
-        <div>
-          <h2>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
-          <button onClick={this.logoutUser}>Sign Out</button>
+        <section>
+          <div className='logged-in-bar'>
+            <h2 className='user-name'>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
+            <button className='sign-out-btn' onClick={this.logoutUser}>Sign Out</button>
+          </div>
           <MovieContainter movies={this.props.movies}/> 
-        </div> 
+        </section> 
       }/>
       <Route exact path='/:id' render={({match}) => {
         const {id} = match.params;
         const description = this.props.movies.find(movie => {
-          movie.isFavorited = false
           return movie.id === parseInt(id)
         });
         return description && <MovieSpecs {...description} />
       }}/>
-      <Route exact path='/Favorites' render={() => <MovieContainter movies={this.props.userFavorites} />}/>
+      <Route exact path='/Favorites' render={() =>
+      <section>
+        <h2>{this.props.user.name && `Welcome ${this.props.user.name}!`}</h2>
+        <button onClick={this.logoutUser}>Sign Out</button>
+        <MovieContainter movies={this.props.userFavorites} />
+      </section>
+      }/>
       <Route exact path='/signup' render={() => 
-      <div>
-        <SignUpMenu user={this.props.user}/>
-        <MovieContainter movies={this.props.movies}/> 
-      </div>
+        <section>
+          <SignUpMenu user={this.props.user}/>
+          <MovieContainter movies={this.props.movies}/> 
+        </section>
       }/>
     </div>
     )
