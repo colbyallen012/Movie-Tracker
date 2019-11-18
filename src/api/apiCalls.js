@@ -49,7 +49,7 @@ export const getUser = async (user) => {
   } 
 }
 
-export const favoriteMovie = async (movieInfo) => {
+export const favoriteMovie = async (userId, movieInfo) => {
   try {
     const options = {
       method: 'POST',
@@ -59,7 +59,7 @@ export const favoriteMovie = async (movieInfo) => {
       }
     }
 
-    const response = await fetch(`https://movietracker-be.herokuapp.com/api/v1/users/${user_id}/favorites`, options)
+    const response = await fetch(`https://movietracker-be.herokuapp.com/api/v1/users/${userId}/favorites`, options)
     const result = await response.json()
     return result.data
   } catch (error) {
@@ -69,7 +69,7 @@ export const favoriteMovie = async (movieInfo) => {
 
 export const fetchFavorites = async (userId) => {
   try {
-    const response = await fetch(`https://movietracker-be.herokuapp.com/api/users/${user_id}/favorites`);
+    const response = await fetch(`https://movietracker-be.herokuapp.com/api/users/${userId}/favorites`);
     const result = await response.json();
     return result.data
   } catch (error) {
@@ -86,7 +86,7 @@ export const removeFavorite = async (userId, movieId) => {
       }
     }
 
-    const response = await fetch(`http://localhost:3001//api/v1/users/${user_id}/favorites/${movieId}`, option);
+    const response = await fetch(`http://localhost:3001//api/v1/users/${userId}/favorites/${movieId}`, option);
     const result = await response.json();
     console.log(result);
   } catch (error) {
