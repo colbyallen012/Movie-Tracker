@@ -2,7 +2,9 @@
   "name": "movie-tracker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://colbyallen012.github.io/Movie-Tracker",
   "dependencies": {
+    "gh-pages": "^2.1.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
@@ -12,6 +14,8 @@
     "redux-devtools-extension": "^2.13.8"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --verbose",

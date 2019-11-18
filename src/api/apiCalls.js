@@ -1,8 +1,11 @@
   // const url = 'http://localhost:3000'
-import { apiKey } from '../apiKey'
+// import { apiKey } from '../apiKey'
+const apiKey = process.env.REACT_APP_API_KEY
+
+// const apiKey = '26b4ed9978c000b15baddff565ba3d67'
 
 export const fetchMovies = () => {
-  return fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}edd&language=en-US&page=1`)
+  return fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`)
     .then(res => res.json())
     .then(res => res.results)
     .catch (error => error.message)   
@@ -18,7 +21,7 @@ export const addUser = async (user) => {
       }
     }
 
-    const response = await fetch('http://localhost:3000/api/users/new', options)
+    const response = await fetch('http://localhost:3001/api/v1/users', options)
   
     return response.ok;
   } catch (error) {
@@ -37,10 +40,10 @@ export const getUser = async (user) => {
       }
     }
    
-    const response = await fetch('http://localhost:3000/api/users', options)
+    const response = await fetch('http://localhost:3001/api/v1/login', options)
     const result = await response.json()
     
-    return result.data
+    return result
   } catch (error) {
     throw new Error("Email and password do not match");
   } 
@@ -56,9 +59,9 @@ export const favoriteMovie = async (movieInfo) => {
       }
     }
 
-    const response = await fetch(`http://localhost:3000/api/users/favorites/new`, options)
+    const response = await fetch(`http://localhost:3001/api/users/favorites/new`, options)
     const result = await response.json()
-    // return result.data
+    return result.data
   } catch (error) {
     throw new Error("failed to fetch favorites");
   }
@@ -66,7 +69,7 @@ export const favoriteMovie = async (movieInfo) => {
 
 export const fetchFavorites = async (userId) => {
   try {
-    const response = await fetch(`http://localhost:3000/api/users/${userId}/favorites`);
+    const response = await fetch(`http://localhost:3001/api/users/${userId}/favorites`);
     const result = await response.json();
     return result.data
   } catch (error) {
@@ -83,7 +86,7 @@ export const removeFavorite = async (userId, movieId) => {
       }
     }
 
-    const response = await fetch(`http://localhost:3000/api/users/${userId}/favorites/${movieId}`, option);
+    const response = await fetch(`http://localhost:3001/api/users/${userId}/favorites/${movieId}`, option);
     const result = await response.json();
     console.log(result);
   } catch (error) {
