@@ -20,7 +20,7 @@ class NavBar extends Component {
   return (
     <div>
       <div className = 'header'>
-        <NavLink to='/' className='app'>
+        <NavLink to='/Movie-Tracker/' className='app'>
         <span className='bang'>!</span><button className='app-name'>Netflix</button>
         </NavLink>
         {/* <NavLink to='/favorites' className='nav-fav'>
