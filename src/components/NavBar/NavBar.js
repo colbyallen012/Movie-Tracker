@@ -35,6 +35,7 @@ class NavBar extends Component {
       </div>
       <Route exact path='/' render={() => 
         <section>
+          <AccountMenu user={this.props.user}/>
           <MovieContainter movies={this.props.movies}/> 
         </section>
       }/>
