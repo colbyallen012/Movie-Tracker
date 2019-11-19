@@ -16,7 +16,7 @@ Colby Allen https://github.com/colbyallen012
 
 ## Screenshots
 
-[screencapture-colbyallen012-github-io-Movie-Tracker-2019-11-19-11_33_03.pdf](https://github.com/colbyallen012/Movie-Tracker/files/3865470/screencapture-colbyallen012-github-io-Movie-Tracker-2019-11-19-11_33_03.pdf)
+![screencapture-colbyallen012-github-io-Movie-Tracker-2019-11-19-11_40_53](https://user-images.githubusercontent.com/43159025/69175697-79ffe200-0ac1-11ea-9117-9cd5a17cc26b.png)
 
 ![screencapture-colbyallen012-github-io-LoggedIn-2019-11-19-11_39_00](https://user-images.githubusercontent.com/43159025/69175578-3907cd80-0ac1-11ea-95f5-c39d7000e56e.png)
 
