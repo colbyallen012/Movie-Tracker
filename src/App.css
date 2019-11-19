@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Istok+Web&display=swap');
+
 html {
   background-color: black;
 }
 
 .App {
   color:white;
+  font-family: Istok Web;
 }
 
 .App-link {

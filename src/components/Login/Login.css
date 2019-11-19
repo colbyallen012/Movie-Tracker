@@ -11,8 +11,9 @@
   border-color: red;
   color: red;
   height: 30px;
-  margin: 10px;
+  margin: 7px;
   width: 175px;
+  font-size: 20px;
 }
 
 .log-in-btn {
@@ -28,5 +29,5 @@
 
 ::placeholder {
   color: red;
-  font-size: 15px;
+  font-size: 20px;
 }

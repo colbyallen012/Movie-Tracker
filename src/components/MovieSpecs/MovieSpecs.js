@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import AcountMenu from '../AccountMenu/AccountMenu'
 import '../MovieSpecs/MovieSpecs.css'
 import { connect } from 'react-redux';
 import { favoriteMovie, removeFavorite, fetchFavorites } from '../../api/apiCalls';
@@ -50,25 +51,27 @@ class MovieSpecs extends Component {
     const imgSrc = `http://image.tmdb.org/t/p/w1280//${backdrop_path}`
     return (
       <div className='container'>
-        <h1 className='title'>{title}
-          <span className='rating'> Rating : {vote_average} / 10 </span>
-
+        <section className='specs'>
+          <h2 className='title'>{title}</h2>
+          <h3 className='rating'> Rating : {vote_average} / 10</h3>
+          <h3 className='date'>Release Date: {release_date}</h3>
+          <p className='description'>{overview}</p>
+          <h3>{this.state.error}</h3>
           <button onClick={() => this.handleFavorite()} className='btn'>
             Add to Favorites
-          </button>
-          <button onClick={() => this.handleDelete()} className='btn'>
+            </button>
+            <button onClick={() => this.handleDelete()} className='btn'>
             Delete Favorite
-          </button>
-        </h1>
-        <img src={imgSrc} alt="movie backdrop" className='back-drop'/>
-        <p className='description'>{overview}</p>
-        <p className='date'>Release Date: {release_date}</p>
-        <h3>{this.state.error}</h3>
-        <Link to={`/LoggedIn`}>
-          <button className='back-btn'>
-           ◀ back
-          </button>
-        </Link>
+            </button>
+          <Link to={`/LoggedIn`}>
+            <button className='back-btn'>
+           ◀ Back
+            </button>
+          </Link>
+        </section>
+        <section className='image'>
+          <img src={imgSrc} alt="movie backdrop" className='back-drop'/>
+        </section>
       </div>
     )
   }

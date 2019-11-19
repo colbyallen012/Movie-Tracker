@@ -20,10 +20,12 @@ class NavBar extends Component {
   return (
     <div>
       <div className = 'header'>
-        <h1 className='app-name'> <span className='bang'>!</span>Netflix</h1>
-        <NavLink to='/favorites' className='nav-fav'>
-          <button className='nav-btn'>Favorites</button>
+        <NavLink to='/' className='app'>
+        <span className='bang'>!</span><button className='app-name'>Netflix</button>
         </NavLink>
+        {/* <NavLink to='/favorites' className='nav-fav'>
+          <button className='nav-btn'>Favorites</button>
+        </NavLink> */}
         <NavLink to='/Login' className='nav-log-in'>
           <button className='nav-log-in-btn'>Login</button>
         </NavLink>
@@ -33,6 +35,7 @@ class NavBar extends Component {
       </div>
       <Route exact path='/' render={() => 
         <section>
+          <AccountMenu user={this.props.user}/>
           <MovieContainter movies={this.props.movies}/> 
         </section>
       }/>

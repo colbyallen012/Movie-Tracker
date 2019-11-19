@@ -5,6 +5,7 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
+
 .form {
   grid-area: 1 / 1 / 2 / 2;
 }
@@ -16,6 +17,11 @@
 .nav-sign-up {
   grid-area: 1 / 4 / 2 / 5;
   margin: auto 0;
+}
+
+.nav-log-in {
+  grid-area: 1 / 0 / 2 / 5;
+  margin: auto 20px;
 }
 
 .nav-btn {
@@ -31,7 +37,7 @@
   border-color: red;
   color: red;
   font-size: 1.5rem;
-  width: 60%;
+  width: 50%;
 }
 
 .nav-log-in-btn:hover {
@@ -47,15 +53,25 @@
 }
 
 .app-name {
+  background-color: black;
+  border: none;
   color:red;
-  display: flex;
+  font-size: 6rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.app {
   grid-area: 1 / 2 / 2 / 3;
   justify-content: center;
-  font-size: 4rem;
+  display: flex;
+  text-decoration: none;
 }
 
 .bang {
   color: white;
+  font-size: 6rem;
+  padding-top: 14px;
 }
 
 .logged-in-bar {
