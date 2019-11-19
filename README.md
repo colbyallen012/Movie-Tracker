@@ -4,7 +4,7 @@ This was a two week group project at Turing School of Software & Design, where w
 
 ## Live App
 
-(Live Demo){https://colbyallen012.github.io/}
+{Live Demo}(https://colbyallen012.github.io/)
 
 ## Created By
 
