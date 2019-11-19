@@ -16,17 +16,14 @@ Colby Allen https://github.com/colbyallen012
 
 ## Screenshots
 
-![screencapture-localhost-3001-2019-07-23-23_48_24](https://user-images.githubusercontent.com/43159025/61768389-90f92680-ada4-11e9-9f66-fe61d63511c5.png)
+[screencapture-colbyallen012-github-io-Movie-Tracker-2019-11-19-11_33_03.pdf](https://github.com/colbyallen012/Movie-Tracker/files/3865470/screencapture-colbyallen012-github-io-Movie-Tracker-2019-11-19-11_33_03.pdf)
 
-![screencapture-localhost-3001-LoggedIn-2019-07-23-23_48_42](https://user-images.githubusercontent.com/43159025/61768425-abcb9b00-ada4-11e9-8e62-e03d02b9b559.png)
+![screencapture-colbyallen012-github-io-LoggedIn-2019-11-19-11_39_00](https://user-images.githubusercontent.com/43159025/69175578-3907cd80-0ac1-11ea-95f5-c39d7000e56e.png)
+
 
 ### Movie Details
 
-![screencapture-localhost-3001-420818-2019-07-23-23_48_52](https://user-images.githubusercontent.com/43159025/61768450-bc7c1100-ada4-11e9-806f-29b98bb82de8.png)
-
-### Favorites
-
-![screencapture-localhost-3001-favorites-2019-07-23-23_49_04](https://user-images.githubusercontent.com/43159025/61768461-cb62c380-ada4-11e9-96ae-daea20b74aa3.png)
+![screencapture-colbyallen012-github-io-423204-2019-11-19-11_33_33](https://user-images.githubusercontent.com/43159025/69175613-4cb33400-0ac1-11ea-9e45-d066ddefeab0.png)
 
 
 ### Built With
