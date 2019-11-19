@@ -20,40 +20,40 @@
 
 .description {
   text-align: center;
-  margin: 10px auto;
+  margin: 3px auto;
   padding: 20px;
 }
 
 .title {
   font-size: 35px;
   text-align: center;
-  margin: 10px;
+  margin: 3px;
 }
 
 .rating {
   font-size: 15px;
   text-align: center;
-  margin: 20px;
+  margin: 5px;
 }
 
 .btn {
   background-color: black;
   border-color: red;
   color: red;
-  font-size: 1.5rem;
+  font-size: 1rem;
   height: 6%;
-  width: 80%;
-  margin: 10px 25px;
+  width: 50%;
+  margin: 10px 110px;
 }
 
 .back-btn {
   background-color: black;
   border-color: red;
   color: red;
-  font-size: 1.5rem;
+  font-size: 1rem;
   height: 6%;
-  width: 80%;
-  margin: 0 auto;
+  width: 50%;
+  margin: 10px 110px;
 }
 
 .btn:hover, .back-btn:hover {
@@ -62,14 +62,10 @@
   color: black;
 }
 
-.back-btn {
-  margin: 10px 25px;
-}
-
 .date {
   font-size: 15px;
   text-align: center;
-  margin: 20px;
+  margin: 5px;
 }
 
 

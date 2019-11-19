@@ -5,6 +5,7 @@
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
+
 .form {
   grid-area: 1 / 1 / 2 / 2;
 }
@@ -56,6 +57,8 @@
   border: none;
   color:red;
   font-size: 6rem;
+  letter-spacing: 3px;
+  font-weight: 700;
 }
 
 .app {
@@ -68,6 +71,7 @@
 .bang {
   color: white;
   font-size: 6rem;
+  padding-top: 14px;
 }
 
 .logged-in-bar {
