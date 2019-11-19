@@ -8,11 +8,11 @@ This was a two week group project at Turing School of Software & Design, where w
 
 ## Created By
 
-[Antonio Fry] (https://github.com/AntonioFry)
+[Antonio Fry](https://github.com/AntonioFry)
 
-[Aidan McKay] (https://github.com/JellyBeans1312)
+[Aidan McKay](https://github.com/JellyBeans1312)
 
-[Colby Allen] (https://github.com/colbyallen012)
+[Colby Allen](https://github.com/colbyallen012)
 
 ## Screenshots
 
