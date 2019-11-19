@@ -58,7 +58,7 @@ Go to `http://localhost:3000/` in your browser to view the code running in the b
 #### Back End
 
 ```bash
-git clone https://github.com/turingschool-examples/movie-tracker
+git clone https://github.com/colbyallen012/movie-tracker-be
 ```
 
 ```bash
@@ -68,4 +68,3 @@ npm  install
 ```bash
 npm start
 ```
-Go to `http://localhost:3001/api/users` in your browser you'll see a json response with one user.
