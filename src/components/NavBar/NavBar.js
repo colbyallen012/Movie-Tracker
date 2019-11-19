@@ -33,7 +33,7 @@ class NavBar extends Component {
           <button className='nav-btn'>Sign Up</button>
         </NavLink>
       </div>
-      <Route exact path='/' render={() => 
+      <Route exact path='/Movie-Tracker/' render={() => 
         <section>
           <AccountMenu user={this.props.user}/>
           <MovieContainter movies={this.props.movies}/> 
