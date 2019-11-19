@@ -4,7 +4,7 @@ This was a two week group project at Turing School of Software & Design, where w
 
 ## Live App
 
-https://colbyallen012.github.io/Movie-Tracker
+(Live Demo){https://colbyallen012.github.io/}
 
 ## Created By
 
